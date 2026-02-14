@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitFav - Seus Devs Favoritos</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <aside>
+        <div class="logo">
+          <span class="material-icons">star</span>
+          <h1>GitFav</h1>
+        </div>
+
+        <h3>Meus Favoritos</h3>
+        <ul id="lista-favoritos"></ul>
+      </aside>
+
+      <main>
+        <div class="search-box">
+          <input
+            type="text"
+            id="input-search"
+            placeholder="Digite um usuário do GitHub..."
+          />
+          <button id="btn-search">BUSCAR</button>
+        </div>
+
+        <div class="profile-area" id="profile-area">
+          <div class="profile-header">
+            <img id="img-avatar" src="" alt="Avatar" />
+            <div class="profile-info">
+              <h2 id="txt-name">Nome do Dev</h2>
+              <a id="txt-login" href="#" target="_blank">@login</a>
+              <p id="txt-bio">A bio vai aparecer aqui...</p>
+            </div>
+
+            <button id="btn-fav" class="btn-fav">
+              <span class="material-icons">star_border</span>
+              Favoritar
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <div class="card">
+              <span class="material-icons">people</span>
+              <strong id="txt-followers">0</strong>
+              <small>Seguidores</small>
+            </div>
+            <div class="card">
+              <span class="material-icons">code</span>
+              <strong id="txt-repos">0</strong>
+              <small>Repositórios</small>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
