@@ -8,6 +8,7 @@ const txtBio = document.querySelector("#txt-bio");
 const txtSeguidores = document.querySelector("#txt-followers");
 const txtRepo = document.querySelector("#txt-repos");
 const listaUl = document.querySelector("#lista-favoritos");
+const areaPerfil = document.querySelector(".profile-area");
 
 const btnFavoritar = document.querySelector("#btn-fav");
 
@@ -35,6 +36,8 @@ async function buscarApi() {
     txtBio.innerText = dados.bio;
     txtSeguidores.innerText = dados.followers;
     txtRepo.innerText = dados.public_repos;
+
+    areaPerfil.style.display = "block";
 
     usuarioAtual = dados;
 
@@ -92,10 +95,17 @@ function renderizar() {
       txtLogin.href = item.html_url;
       txtSeguidores.innerText = item.followers;
       txtRepo.innerText = item.public_repos;
+      document.querySelector(".profile-area").style.display = "block";
     });
 
     listaUl.appendChild(novoLi);
   });
 }
+
+inputBusca.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    btnBusca.click();
+  }
+});
 
 renderizar();
