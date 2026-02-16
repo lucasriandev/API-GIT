@@ -7,10 +7,11 @@ const txtLogin = document.querySelector("#txt-login");
 const txtBio = document.querySelector("#txt-bio");
 const txtSeguidores = document.querySelector("#txt-followers");
 const txtRepo = document.querySelector("#txt-repos");
+const listaUl = document.querySelector("#lista-favoritos");
 
 const btnFavoritar = document.querySelector("#btn-fav");
 
-let usuarioAtual = [];
+let usuarioAtual = null;
 let listaFavoritos = JSON.parse(localStorage.getItem("Favoritos")) || [];
 
 async function buscarApi() {
@@ -58,6 +59,43 @@ btnFavoritar.addEventListener("click", () => {
   listaFavoritos.push(usuarioAtual);
   localStorage.setItem("Favoritos", JSON.stringify(listaFavoritos));
 
+  renderizar();
+
   alert("Usuario salvo com sucesso!");
   console.log(listaFavoritos);
 });
+
+function renderizar() {
+  listaUl.innerHTML = "";
+
+  listaFavoritos.forEach((item) => {
+    const novoLi = document.createElement("li");
+
+    novoLi.innerHTML = `
+            <img src="${item.avatar_url}" alt="Avatar">
+            <span>${item.login}</span>
+            <button class="btn-remove">&times;</button>
+        `;
+    const btnRemove = novoLi.querySelector(".btn-remove");
+    btnRemove.addEventListener("click", () => {
+      listaFavoritos = listaFavoritos.filter((fav) => fav.id !== item.id);
+      localStorage.setItem("Favoritos", JSON.stringify(listaFavoritos));
+      renderizar();
+    });
+
+    novoLi.addEventListener("click", (e) => {
+      if (e.target.classList.contains("btn-remove")) return;
+
+      imgAvatar.src = item.avatar_url;
+      txtNome.innerText = item.name;
+      txtLogin.innerText = item.login;
+      txtLogin.href = item.html_url;
+      txtSeguidores.innerText = item.followers;
+      txtRepo.innerText = item.public_repos;
+    });
+
+    listaUl.appendChild(novoLi);
+  });
+}
+
+renderizar();
