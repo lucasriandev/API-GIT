@@ -10,7 +10,8 @@ const txtRepo = document.querySelector("#txt-repos");
 
 const btnFavoritar = document.querySelector("#btn-fav");
 
-let usuarioAtual = JSON.parse(localStorage.getItem("Favoritos")) || [];
+let usuarioAtual = [];
+let listaFavoritos = JSON.parse(localStorage.getItem("Favoritos")) || [];
 
 async function buscarApi() {
   const usuario = inputBusca.value;
@@ -29,12 +30,14 @@ async function buscarApi() {
 
     imgAvatar.src = dados.avatar_url;
     txtNome.innerText = dados.name;
-    txtLogin.innerText = dados.login;
+    txtLogin.href = dados.html_url;
     txtBio.innerText = dados.bio;
     txtSeguidores.innerText = dados.followers;
     txtRepo.innerText = dados.public_repos;
 
     usuarioAtual = dados;
+
+    inputBusca.value = "";
   } catch (error) {
     console.log(error);
     alert("Erro");
@@ -42,3 +45,19 @@ async function buscarApi() {
 }
 
 btnBusca.addEventListener("click", buscarApi);
+
+btnFavoritar.addEventListener("click", () => {
+  if (usuarioAtual === null) return;
+
+  const jaExiste = listaFavoritos.some((item) => item.id === usuarioAtual.id);
+  if (jaExiste) {
+    alert("Esse usuario já está nos favoritos!");
+    return;
+  }
+
+  listaFavoritos.push(usuarioAtual);
+  localStorage.setItem("Favoritos", JSON.stringify(listaFavoritos));
+
+  alert("Usuario salvo com sucesso!");
+  console.log(listaFavoritos);
+});
