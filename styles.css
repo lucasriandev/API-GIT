@@ -22,8 +22,10 @@ body {
 /* CONTAINER PRINCIPAL */
 #app {
   display: flex;
-  width: 900px;
-  height: 600px;
+  width: 95%; /* Usa 95% da tela em vez de fixar em 900px */
+  max-width: 900px; /* Não passa de 900px em monitores grandes */
+  height: 90vh; /* 90% da altura da tela */
+  min-height: 600px; /* Garante que não fique menor que 600px em telas boas */
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -32,7 +34,6 @@ body {
   border-radius: 20px;
   overflow: hidden;
 }
-
 /* --- BARRA LATERAL --- */
 aside {
   width: 300px;
