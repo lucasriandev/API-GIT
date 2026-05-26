@@ -3,8 +3,6 @@
 Uma aplicação web interativa que permite buscar usuários do GitHub através da API oficial e salvá-los em uma lista de favoritos. O projeto apresenta uma interface moderna com efeito "Glassmorphism" (vidro fosco) e design responsivo.
 
 ## 🚀 Demonstração
-Acesse o projeto online aqui: **[GitFav - API-GIT](https://lucasriandev.github.io/API-GIT/)**
-
 ![Preview do Projeto](https://github.com/user-attachments/assets/fda3aee9-7761-46d8-874b-6b0d907cd7cf)
 
 ## 📋 Sobre o Projeto
